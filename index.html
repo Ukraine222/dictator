@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Диктатор: Захват мира</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Russo+One&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="choose-country" class="choose-country">
+    <h1>Выберите свою страну</h1>
+    <select id="countrySelect"></select>
+    <button onclick="startGame()">Начать игру</button>
+  </div>
+
+  <div id="game-ui" style="display: none; flex-direction: row;">
+    <div id="sidebar">
+      <button class="tab-button active" onclick="showTab('front')">Фронт</button>
+      <button class="tab-button" onclick="showTab('soldiers')">Солдаты</button>
+      <button class="tab-button" onclick="showTab('equipment')">Техника</button>
+      <button class="tab-button" onclick="showTab('taxes')">Налоги</button>
+    </div>
+
+    <div id="main-content">
+      <h2 id="player-country"></h2>
+
+      <div id="tab-front" class="tab-content" style="flex-direction: column; display: flex;">
+        <div id="map"></div>
+        <div id="tooltip" class="tooltip"></div>
+      </div>
+
+      <div id="tab-soldiers" class="tab-content" style="flex-direction: column; display: none;">
+        <div id="balance-container">Баланс: $<span id="balance">1000</span></div>
+        <div id="soldiers-list"></div>
+      </div>
+
+      <div id="tab-equipment" class="tab-content" style="flex-direction: column; display: none;">
+        <p>Информация о технике будет здесь.</p>
+      </div>
+
+      <div id="tab-taxes" class="tab-content" style="flex-direction: column; display: none;">
+        <p>Информация о налогах будет здесь.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Модальное окно характеристик -->
+  <div id="country-stats-modal" class="modal-hidden" role="dialog" aria-modal="true" aria-labelledby="stats-country-name">
+    <div class="modal-content">
+      <button id="close-modal" title="Закрыть" aria-label="Закрыть окно">×</button>
+      <h3 id="stats-country-name"></h3>
+      <ul id="stats-list"></ul>
+      <div id="special-info"></div>
+      <button id="declare-war-btn" class="declare-war-button">Объявить войну</button>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
